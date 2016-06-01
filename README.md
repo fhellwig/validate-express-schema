@@ -39,8 +39,22 @@ app.put('/users:userId', validate.params(paramsSchema), validate.body(bodySchema
     ...
 });
 ```
+### Shortcut
 
-### API
+You can simply specify the properties in the schema object:
+
+```javascript
+const equivalentBodySchema = {
+    username: {
+        type: 'string',
+        required: true
+    }
+};
+```
+
+If the schema does not have a `type` or `properties` property, then the schema is created from the object keys.
+
+## API
 
 The `validate-express-schema` package exports three middleware generator functions and one exception object:
 
