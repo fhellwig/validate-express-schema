@@ -19,32 +19,31 @@ const defaultOptions = {
 };
 
 function validateQuery(schema, options) {
-    validate = validator(schema);
+    const fn = validator(processSchema(schema), options);
     return function(req, res, next) {
-        next(validate(schema, req.query));
+        next(validate(fn, req.query));
     }
 }
 
 function validateParams(schema, options) {
-    const validate = validator(processSchema(schema), options);
+    const fn = validator(processSchema(schema), options);
     return function(req, res, next) {
-        next(validate(schema, req.params));
+        next(validate(fn, req.params));
     }
 }
 
 function validateBody(schema, options) {
-    const validate = validator(processSchema(schema), options);
+    const fn = validator(processSchema(schema), options);
     return function(req, res, next) {
-        next(validate(schema, req.body));
+        next(validate(fn, req.body));
     }
 }
 
-function validate(schema, json) {
-    const validate = validator(processSchema(schema), options);
+function validate(fn, json) {
     if (fn(json)) {
         return null;
     }
-    return new ValidationError(validate.errors);
+    return new ValidationError(fn.errors);
 }
 
 function processSchema(schema) {
