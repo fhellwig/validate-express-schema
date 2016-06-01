@@ -37,7 +37,7 @@ const bodySchema = {
 
 app.put('/users:userId', validate.params(paramsSchema), validate.body(bodySchema), (req, res) => {
     ...
-})
+});
 ```
 
 ### API
@@ -49,7 +49,7 @@ The `validate-express-schema` package exports three middleware generator functio
     body(schema [, options])
     ValidationError
 
-Calling these returns a middleware function that validates the request query, params, and body objects.
+Calling one of the three middleware generator functions returns a middleware function that validates the request query, params, and body objects.
 Validation errors result in `next(ValidationError)` being called.
 The `ValidationError` object has an `errors` property that lists the validation errors.
 
