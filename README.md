@@ -6,7 +6,7 @@ Validates the query, params, and body of an express request according to a JSON 
 npm install --save validate-express-schema
 ```
 
-Uses the [is-my-json-valid](https://github.com/mafintosh/is-my-json-valid) package.
+Uses the [is-my-json-valid](https://github.com/mafintosh/is-my-json-valid) package. It also uses the additional formats from the [is-my-schema-valid](https://github.com/voronianski/is-my-schema-valid) package.
 
 ## Usage
 
@@ -19,7 +19,8 @@ const paramsSchema = {
     properties: {
         userId: {
             type: 'integer',
-            required: true
+            required: true,
+            format: 'uuid'
         }
     }
 }
