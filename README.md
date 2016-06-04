@@ -13,30 +13,31 @@ Uses the [is-my-json-valid](https://github.com/mafintosh/is-my-json-valid) packa
 ```javascript
 const validate = require(validate-express-schema);
 
-const paramsSchema = {
-    type: 'object',
-    required: true,
-    properties: {
-        userId: {
-            type: 'integer',
-            required: true,
-            format: 'uuid'
+const schema = {
+    params: {
+        type: 'object',
+        required: true,
+        properties: {
+            userId: {
+                type: 'integer',
+                required: true,
+                format: 'uuid'
+            }
         }
-    }
-}
-
-const bodySchema = {
-    type: 'object',
-    required: true,
-    properties: {
-        username: {
-            type: 'string',
-            required: true
+    },
+    body: {
+        type: 'object',
+        required: true,
+        properties: {
+            username: {
+                type: 'string',
+                required: true
+            }
         }
     }
 };
 
-app.put('/users:userId', validate.params(paramsSchema), validate.body(bodySchema), (req, res) => {
+app.put('/users:userId', validate(params), (req, res) => {
     ...
 });
 ```
@@ -45,10 +46,19 @@ app.put('/users:userId', validate.params(paramsSchema), validate.body(bodySchema
 You can simply specify the properties in the schema object:
 
 ```javascript
-const equivalentBodySchema = {
-    username: {
-        type: 'string',
-        required: true
+const equivalentSchema = {
+    params: {
+        userId: {
+            type: 'integer',
+            required: true,
+            format: 'uuid'
+        }
+    },
+    body: {
+        username: {
+            type: 'string',
+            required: true
+        }
     }
 };
 ```
@@ -57,14 +67,12 @@ If the schema does not have a `type` or `properties` property, then the schema i
 
 ## API
 
-The `validate-express-schema` package exports three middleware generator functions and one exception object:
+The `validate-express-schema` package exports one middleware generator functions and one exception object:
 
-    query(schema [, options])
-    params(schema [, options])
-    body(schema [, options])
+    validate(schema [, options])
     ValidationError
 
-Calling one of the three middleware generator functions returns a middleware function that validates the request query, params, and body objects.
+Calling the middleware generator functions returns a middleware function that validates the request params, query, and body objects.
 Validation errors result in `next(ValidationError)` being called.
 The `ValidationError` object has an `errors` property that lists the validation errors.
 

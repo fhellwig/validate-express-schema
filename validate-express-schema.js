@@ -30,32 +30,30 @@ const formats = {
     'data-uri': /^\s*data:([a-z]+\/[a-z0-9\-\+]+(;[a-z\-]+\=[a-z0-9\-]+)?)?(;base64)?,[a-z0-9\!\$\&\'\,\(\)\*\+\,\;\=\-\.\_\~\:\@\/\?\%\s]*\s*$/i
 };
 
-function validateQuery(schema, options) {
-    const fn = validator(processSchema(schema), processOptions(options));
+function validate(schema, options) {
+    const fn = {};
+    options = processOptions(options);
+    if (schema.params) {
+        fn.params = validator(processSchema(schema.params), options);
+    }
+    if (schema.query) {
+        fn.query = validator(processSchema(schema.query), options);
+    }
+    if (schema.body) {
+        fn.body = validator(processSchema(schema.body), options);
+    }
     return function(req, res, next) {
-        next(validate(fn, req.query));
+        if (fn.params && !fn.params(req.params)) {
+            return next(new ValidationError(fn.params.errors));
+        }
+        if (fn.query && !fn.query(req.query)) {
+            return next(new ValidationError(fn.query.errors));
+        }
+        if (fn.body && !fn.body(req.body)) {
+            return next(new ValidationError(fn.body.errors));
+        }
+        next();
     }
-}
-
-function validateParams(schema, options) {
-    const fn = validator(processSchema(schema), processOptions(options));
-    return function(req, res, next) {
-        next(validate(fn, req.params));
-    }
-}
-
-function validateBody(schema, options) {
-    const fn = validator(processSchema(schema), processOptions(options));
-    return function(req, res, next) {
-        next(validate(fn, req.body));
-    }
-}
-
-function validate(fn, json) {
-    if (fn(json)) {
-        return null;
-    }
-    return new ValidationError(fn.errors);
 }
 
 function processSchema(schema) {
@@ -80,9 +78,6 @@ function processOptions(options) {
     return retval;
 }
 
-module.exports = {
-    query: validateQuery,
-    params: validateParams,
-    body: validateBody,
-    ValidationError: ValidationError
-};
+validate.ValidationError = ValidationError;
+
+module.exports = validate;
