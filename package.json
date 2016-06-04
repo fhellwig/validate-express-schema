@@ -1,82 +1,24 @@
 {
-  "_args": [
-    [
-      "validate-express-schema@^1.0.4",
-      "/Users/frank/Projects/be-valued-webapi"
-    ]
-  ],
-  "_from": "validate-express-schema@>=1.0.3 <2.0.0",
-  "_id": "validate-express-schema@1.0.3",
-  "_inCache": true,
-  "_installable": true,
-  "_location": "/validate-express-schema",
-  "_nodeVersion": "5.6.0",
-  "_npmOperationalInternal": {
-    "host": "packages-12-west.internal.npmjs.com",
-    "tmp": "tmp/validate-express-schema-1.0.3.tgz_1464862525088_0.0026318910531699657"
-  },
-  "_npmUser": {
-    "email": "frank@hellwig.org",
-    "name": "fhellwig"
-  },
-  "_npmVersion": "3.6.0",
-  "_phantomChildren": {},
-  "_requested": {
     "name": "validate-express-schema",
-    "raw": "validate-express-schema@^1.0.3",
-    "rawSpec": "^1.0.3",
-    "scope": null,
-    "spec": ">=1.0.3 <2.0.0",
-    "type": "range"
-  },
-  "_requiredBy": [
-    "/"
-  ],
-  "_shasum": "bb70fa6603d28996de96d1739221e4acc1ebf05f",
-  "_shrinkwrap": null,
-  "_spec": "validate-express-schema@^1.0.3",
-  "_where": "/Users/frank/Projects/be-valued-webapi",
-  "author": {
-    "name": "Frank Hellwig"
-  },
-  "bugs": {
-    "url": "https://github.com/fhellwig/validate-express-schema/issues"
-  },
-  "dependencies": {
-    "is-my-json-valid": "^2.13.1"
-  },
-  "description": "Validates express query, params, and body.",
-  "devDependencies": {},
-  "directories": {},
-  "dist": {
-    "shasum": "bb70fa6603d28996de96d1739221e4acc1ebf05f",
-    "tarball": "https://registry.npmjs.org/validate-express-schema/-/validate-express-schema-1.0.3.tgz"
-  },
-  "gitHead": "bbe91bc968583303590d78cb3249870240aae091",
-  "homepage": "https://github.com/fhellwig/validate-express-schema#readme",
-  "keywords": [
-    "Espress",
-    "JSON",
-    "Schema",
-    "Validate"
-  ],
-  "license": "MIT",
-  "main": "validate-express-schema.js",
-  "maintainers": [
-    {
-      "name": "fhellwig",
-      "email": "frank@hellwig.org"
+    "version": "1.0.4",
+    "description": "Validates express params, query, and body.",
+    "main": "validate-express-schema.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/fhellwig/validate-express-schema.git"
+    },
+    "keywords": [
+        "Espress",
+        "JSON",
+        "Schema",
+        "Validate"
+    ],
+    "author": "Frank Hellwig",
+    "license": "MIT",
+    "dependencies": {
+        "is-my-json-valid": "^2.13.1"
     }
-  ],
-  "name": "validate-express-schema",
-  "optionalDependencies": {},
-  "readme": "ERROR: No README data found!",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/fhellwig/validate-express-schema.git"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "version": "1.0.3"
 }
