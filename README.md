@@ -64,7 +64,7 @@ const equivalentSchema = {
 };
 ```
 
-If the schema does not have a `type` or `properties` property, then the schema is created from the object keys.
+If the schema does not have a `type` property, then the schema is created from the object keys.
 
 ## API
 

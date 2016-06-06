@@ -57,7 +57,7 @@ function validate(schema, options) {
 }
 
 function processSchema(schema) {
-    if (util.isString(schema.type) && util.isObject(schema.properties)) {
+    if (util.isString(schema.type)) {
         return schema;
     }
     const retval = {
