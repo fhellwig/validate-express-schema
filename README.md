@@ -2,6 +2,8 @@
 
 Validates the params, query, and body of an express request according to a JSON schema.
 
+Version: 1.0.6
+
 ```
 npm install --save validate-express-schema
 ```
@@ -37,7 +39,7 @@ const schema = {
     }
 };
 
-app.put('/users:userId', validate(params), (req, res) => {
+app.put('/users:userId', validate(schema), (req, res) => {
     ...
 });
 ```

@@ -1,6 +1,6 @@
 {
     "name": "validate-express-schema",
-    "version": "1.0.5",
+    "version": "1.0.6",
     "description": "Validates express params, query, and body.",
     "main": "validate-express-schema.js",
     "scripts": {
